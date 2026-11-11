@@ -1,0 +1,20 @@
+/* Participant-only calendar and broadcast refinements. */
+
+.calendar-list .simple-row {
+  gap: 16px;
+}
+
+.calendar-day:focus-within {
+  outline: 2px solid var(--primary);
+}
+
+.stream-player iframe {
+  display: block;
+}
+
+@media (max-width:700px) {
+  .stream-empty {
+    min-height: 180px;
+    padding: 16px;
+  }
+}

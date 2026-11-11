@@ -1,0 +1,13 @@
+/* Admin controls remain inside the protected Admin workspace. */
+
+.data-table td .inline-form {
+  margin: 0;
+}
+
+.data-table td .inline-form select {
+  min-width: 160px;
+}
+
+.data-table .button {
+  white-space: nowrap;
+}

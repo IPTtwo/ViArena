@@ -62,8 +62,9 @@ export function CoOrganizerManagement() {
                 onChange={(event) => {
                   setMemberId(event.target.value);
                   setPermissions(
-                    event.coOrganizers?.find((coOrganizer) => coOrganizer.userId === event.target.value)
-                      ?.permissions || []
+                    event.coOrganizers?.find(
+                      (coOrganizer) => coOrganizer.userId === event.target.value,
+                    )?.permissions || [],
                   );
                 }}
               >
@@ -89,7 +90,7 @@ export function CoOrganizerManagement() {
                       setPermissions((current) =>
                         event.target.checked
                           ? [...current, key]
-                          : current.filter((permission) => permission !== key)
+                          : current.filter((permission) => permission !== key),
                       )
                     }
                   />
@@ -114,7 +115,7 @@ export function CoOrganizerManagement() {
                   {item.permissions
                     .map(
                       (permission) =>
-                        availablePermissions.find(([key]) => key === permission)?.[1] || permission
+                        availablePermissions.find(([key]) => key === permission)?.[1] || permission,
                     )
                     .join(', ') || 'Read-only assignment'}
                 </p>

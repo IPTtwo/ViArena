@@ -4,7 +4,5 @@ import { Shell } from './Shell';
 import { GuestShell } from './GuestShell';
 export function BrowsingShell({ children }) {
   const { user } = useStore();
-  return user ? <Shell>{children}
-  </Shell> : <GuestShell>{children}
-  </GuestShell>
+  return user ? <Shell>{children}</Shell> : <GuestShell>{children}</GuestShell>;
 }

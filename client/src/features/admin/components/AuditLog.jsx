@@ -18,8 +18,10 @@ export function AuditLog() {
 
   const filtered = items.filter((entry) =>
     [entry.actorName, entry.action, entry.resourceId, entry.details].some((value) =>
-      String(value || '').toLowerCase().includes(query.toLowerCase())
-    )
+      String(value || '')
+        .toLowerCase()
+        .includes(query.toLowerCase()),
+    ),
   );
 
   return (

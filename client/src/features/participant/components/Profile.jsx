@@ -48,7 +48,11 @@ export function Profile({ edit = false }) {
       <PageHeader
         eyebrow="ACCOUNT"
         title={edit ? 'Edit Profile' : 'My Profile'}
-        description={edit ? 'Keep your personal details up to date.' : 'Your campus identity and account information.'}
+        description={
+          edit
+            ? 'Keep your personal details up to date.'
+            : 'Your campus identity and account information.'
+        }
         action={
           !edit && (
             <Link className="button primary" to="/profile/edit">
@@ -62,11 +66,7 @@ export function Profile({ edit = false }) {
       <Card className="profile-card">
         <div className="profile-head">
           <div className="profile-avatar">
-            {form.avatar ? (
-              <img src={form.avatar} alt="Profile avatar" />
-            ) : (
-              initials
-            )}
+            {form.avatar ? <img src={form.avatar} alt="Profile avatar" /> : initials}
           </div>
 
           <div>
@@ -90,7 +90,9 @@ export function Profile({ edit = false }) {
             <Field label="Full name">
               <input
                 value={form.name}
-                onChange={(event) => setForm((current) => ({ ...current, name: event.target.value }))}
+                onChange={(event) =>
+                  setForm((current) => ({ ...current, name: event.target.value }))
+                }
               />
             </Field>
 
@@ -101,7 +103,9 @@ export function Profile({ edit = false }) {
             <Field label="Student ID">
               <input
                 value={form.studentId}
-                onChange={(event) => setForm((current) => ({ ...current, studentId: event.target.value }))}
+                onChange={(event) =>
+                  setForm((current) => ({ ...current, studentId: event.target.value }))
+                }
               />
             </Field>
 
@@ -109,7 +113,9 @@ export function Profile({ edit = false }) {
               <textarea
                 rows={4}
                 value={form.bio}
-                onChange={(event) => setForm((current) => ({ ...current, bio: event.target.value }))}
+                onChange={(event) =>
+                  setForm((current) => ({ ...current, bio: event.target.value }))
+                }
               />
             </Field>
 

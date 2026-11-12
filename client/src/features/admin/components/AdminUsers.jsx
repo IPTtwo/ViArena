@@ -85,7 +85,9 @@ export function AdminUsers() {
                               setPending({ member, enable: !member.roles.includes('Organizer') })
                             }
                           >
-                            {member.roles.includes('Organizer') ? 'Revoke Organizer' : 'Assign Organizer'}
+                            {member.roles.includes('Organizer')
+                              ? 'Revoke Organizer'
+                              : 'Assign Organizer'}
                           </Button>
                         )}
                       </div>
@@ -96,7 +98,10 @@ export function AdminUsers() {
             </table>
           </div>
         ) : (
-          <Empty title="No matching members" description="Try another name, account role, or student ID." />
+          <Empty
+            title="No matching members"
+            description="Try another name, account role, or student ID."
+          />
         )}
       </Card>
 

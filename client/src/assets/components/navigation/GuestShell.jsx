@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useStore } from '../../state/StoreProvider';
-import logo from '../../assets/logo.svg';
+import { useStore } from '../../../state/StoreProvider';
+import logo from '../../logo.svg';
 export function GuestShell({ children }) {
   const { user } = useStore();
   return <>

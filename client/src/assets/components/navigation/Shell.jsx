@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { CalendarDays, ChevronRight, ClipboardList, Compass, FileText, Home, LogOut, Menu, Radio, Shield, User, Users, X, Plus, CheckCircle2, BookOpen, Award, Activity, CalendarClock } from 'lucide-react';
-import { useStore } from '../../state/StoreProvider';
-import logo from '../../assets/logo.svg';
-import { canCreateEvent, canManageEvent } from '../../functions/domain';
+import { useStore } from '../../../state/StoreProvider';
+import logo from '../../logo.svg';
+import { canCreateEvent, canManageEvent } from '../../../functions/domain';
 
 const coreLinks = [
   { to: '/events', label: 'Explore Events', icon: Compass },

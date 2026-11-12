@@ -710,6 +710,22 @@ hr {
   margin-top: 8px;
 }
 
+.loading-state {
+  min-height: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.loading-spinner {
+  color: var(--primary);
+  animation: turn .9s linear infinite;
+}
+
 .tabs {
   display: flex;
   gap: 4px;

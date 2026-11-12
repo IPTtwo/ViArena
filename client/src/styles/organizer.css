@@ -1,0 +1,16 @@
+/* Organizer team and schedule panels. */
+
+.checkbox-list legend {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text);
+  padding: 0 8px;
+}
+
+.feature-links .button {
+  min-height: 44px;
+}
+
+.section-heading+.card {
+  margin-top: 16px;
+}

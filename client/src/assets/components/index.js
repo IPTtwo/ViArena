@@ -12,5 +12,5 @@ export { Stats } from './ui/Stats';
 export { Shell } from './navigation/Shell';
 export { GuestShell } from './navigation/GuestShell';
 export { BrowsingShell } from './navigation/BrowsingShell';
-export { dateText, dateTimeText } from '../functions/format';
+export { dateText, dateTimeText } from '../../functions/format';
 export { StatusBadge } from './ui/StatusBadge';

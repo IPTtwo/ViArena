@@ -16,7 +16,7 @@ export function EventDetail() {
   if (!e || !canViewPrivateEvent(e, user)) return <NotFound />;
   const eligibility = registrationEligibility(e, count(e.id), isRegistered(e.id));
   const joined = isRegistered(e.id);
-  return <BrowsingShell>
+  return <>
     <div className="public-content">
       <Link to="/events" className="back-link"><ArrowLeft size={16} /> All events</Link>
       <div className="detail-grid">
@@ -77,5 +77,5 @@ export function EventDetail() {
         </Card>
       </div>
     </div>
-  </BrowsingShell>
+  </>
 }

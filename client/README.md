@@ -20,6 +20,16 @@ npm run build
 
 The Node test and source checks have been run against the archive. The Vite build and browser QA need to be run on a machine with installed npm dependencies.
 
+`npm ci` installs dependencies into `node_modules/`. That folder is local-only and is ignored by Git. The exact dependency versions are recorded in `package-lock.json`.
+
+To create the production bundle:
+
+```bash
+npm run build
+```
+
+Vite writes the generated files to `dist/`. The `dist/` folder is also ignored by Git and can be regenerated at any time. Edit files under `src/`, not `dist/`.
+
 ## Demo accounts for local UI checks
 
 These are **development fixtures only**. They are not real accounts and they are not safe to deploy.
@@ -42,9 +52,10 @@ client/
     app/                 Router and protected route wrappers
     assets/              Brand assets
     components/
-      ui/                Reusable buttons, cards, fields, dialogs, badges
-      navigation/        Sidebar and guest/app layouts
+      ui/                Public barrel for reusable buttons, cards, fields, dialogs, badges
+      navigation/        Public barrel for sidebar and guest/app layouts
       events/            Reusable event-related controls
+      index.js           Single public entry point for shared components
     data/                Development fixtures
     features/
       auth/components/   Sign in, sign up, recovery and landing
@@ -60,7 +71,11 @@ client/
   tests/                 Node tests and source checks
 ```
 
-**Components** are React `.jsx` modules under `components/` or the corresponding `features/*/components/` folder. **Functions** are business logic `.js` modules under `functions/` or role-specific `features/*/functions/`. **Types** are in `.ts`; all styling remains in `.css` files. This preserves JavaScript React without a disruptive migration of every existing component to TypeScript.
+**Components** are React `.jsx` modules under `components/` or the corresponding `features/*/components/` folder. Import shared components through `components/index.js` or its grouped barrels (`components/ui`, `components/navigation`, and `components/events`) instead of importing implementation files throughout the app. Feature-specific screens stay inside their feature folder. **Functions** are business logic `.js` modules under `functions/` or role-specific `features/*/functions/`. **Types** are in `.ts`; all styling remains in `.css` files. This preserves JavaScript React without a disruptive migration of every existing component to TypeScript.
+
+## Routing
+
+Application routes are defined in `src/app/AppRoutes.jsx`. Authentication and role checks are kept in `src/app/guards.jsx`. Public event pages, authenticated participant pages, organizer tools, and admin pages are separated by route and protected where required.
 
 ## Product rules
 
@@ -84,4 +99,4 @@ Do not deploy the preview with real student information or rely on frontend guar
 
 ## GitHub collaboration
 
-Use the separate ticket distribution archive. Hertz, Dave, Thorne, Red, and Shean each have three ticket packets and a README with exact file paths. One ticket per branch, one pull request per ticket, and do not commit the full organized project independently from every developer. The final route integration belongs to VIA-209 and is merged last.
+Use one ticket per branch and one pull request per ticket. Keep generated folders such as `node_modules/` and `dist/` out of commits. The route integration and reusable component structure are now part of the main application; future changes should build on `src/app/` and `src/components/`.

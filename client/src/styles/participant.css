@@ -1,5 +1,39 @@
 /* Participant-only calendar and broadcast refinements. */
 
+.my-events-page {
+  width: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
+.my-events-page .page-header {
+  margin-bottom: 36px;
+}
+
+.my-events-page .tabs {
+  margin-bottom: 28px;
+}
+
+.my-events-card {
+  padding: 12px 28px;
+}
+
+.event-row {
+  grid-template-columns: 76px minmax(0, 1fr) auto;
+  gap: 24px;
+  padding: 28px 0;
+}
+
+.event-row .calendar-tile {
+  width: 76px;
+  height: 76px;
+}
+
+.event-row > .button {
+  align-self: center;
+  white-space: nowrap;
+}
+
 .calendar-list .simple-row {
   gap: 16px;
 }
@@ -13,6 +47,30 @@
 }
 
 @media (max-width:700px) {
+  .my-events-page .page-header {
+    margin-bottom: 28px;
+  }
+
+  .my-events-card {
+    padding: 8px 16px;
+  }
+
+  .event-row {
+    grid-template-columns: 64px minmax(0, 1fr);
+    gap: 16px;
+    padding: 22px 0;
+  }
+
+  .event-row .calendar-tile {
+    width: 64px;
+    height: 64px;
+  }
+
+  .event-row > .button {
+    grid-column: 2;
+    justify-self: start;
+  }
+
   .stream-empty {
     min-height: 180px;
     padding: 16px;

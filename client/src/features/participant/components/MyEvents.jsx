@@ -19,11 +19,11 @@ export function MyEvents() {
     if (tab === 'Live') return new Date(e.start) <= new Date() && new Date(e.end) > new Date();
     return new Date(e.start) > new Date()
   });
-  return <>
+  return <div className="my-events-page">
     <PageHeader eyebrow="MY ARENA" title="My Events" description="Keep track of your event registrations." />
     <div className="tabs" role="tablist" aria-label="My Events filters">{['Upcoming', 'Live', 'Past', 'Canceled'].map(t => <button role="tab" aria-selected={tab === t} key={t} className={tab === t ? 'active' : ''} onClick={() => setTab(t)}>{t}</button>)}
     </div>
-    <Card>{mine.length ? mine.map(r => <div className="simple-row" key={r.id}>
+    <Card className="my-events-card">{mine.length ? mine.map(r => <div className="simple-row event-row" key={r.id}>
       <div className="calendar-tile">
         <strong>{new Date(r.event.start).getDate()}</strong>
         <small>{new Date(r.event.start).toLocaleString('en-PH', { month: 'short' }).toUpperCase()}</small>
@@ -55,5 +55,5 @@ export function MyEvents() {
         }
         setConfirm(null)
       }} />}
-  </>
+  </div>
 }

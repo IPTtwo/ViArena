@@ -92,7 +92,7 @@ export function Auth({ mode }) {
 
         if (!baseUrl) {
           throw new Error(
-            'Password recovery requires your campus account service. Please contact your campus administrator.'
+            'Password recovery requires your campus account service. Please contact your campus administrator.',
           );
         }
 
@@ -107,9 +107,7 @@ export function Auth({ mode }) {
         }`;
 
         const payload =
-          mode === 'forgot'
-            ? { email: form.email }
-            : { token, password: form.password };
+          mode === 'forgot' ? { email: form.email } : { token, password: form.password };
 
         const response = await fetch(endpoint, {
           method: 'POST',
@@ -119,7 +117,7 @@ export function Auth({ mode }) {
 
         if (!response.ok) {
           throw new Error(
-            'The request could not be completed. Check your details or contact your administrator.'
+            'The request could not be completed. Check your details or contact your administrator.',
           );
         }
 
@@ -237,7 +235,10 @@ export function Auth({ mode }) {
               )}
 
               {mode !== 'forgot' && (
-                <Field label={mode === 'reset' ? 'New password' : 'Password'} error={errors.password}>
+                <Field
+                  label={mode === 'reset' ? 'New password' : 'Password'}
+                  error={errors.password}
+                >
                   <div className="password-wrap">
                     <input
                       type={showPassword ? 'text' : 'password'}

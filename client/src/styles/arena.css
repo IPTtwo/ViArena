@@ -1,0 +1,419 @@
+/* Arena page: layout, featured event, shortcuts, event lists, and responsive rules. */
+
+.arena-page {
+  width: 100%;
+  max-width: 1240px;
+  padding: 40px 32px 56px;
+  margin: 0 auto;
+}
+
+.content .arena-page {
+  padding: 0;
+}
+.arena-page .page-header {
+  align-items: center;
+  margin-bottom: 28px;
+}
+.arena-page .page-header h1 {
+  font-size: clamp(25px, 3vw, 32px);
+}
+.arena-page ::selection {
+  background: var(--primary-soft);
+  color: var(--primary);
+}
+
+/* Featured event and optional live-event section. */
+.arena-layout {
+  display: grid;
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+.arena-page .arena-stage-card {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  min-height: 330px;
+  padding: 0;
+  overflow: hidden;
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: none;
+}
+
+.arena-page .arena-stage-empty {
+  grid-template-columns: 1fr;
+  min-height: 180px;
+}
+.arena-stage-content {
+  padding: 32px;
+  min-width: 0;
+}
+.arena-stage-content h2 {
+  font-size: 24px;
+  line-height: 1.35;
+  color: var(--text);
+  margin: 0;
+}
+.arena-stage-content p {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.85;
+  max-width: 65ch;
+}
+.arena-stage-content .button {
+  background: var(--primary);
+  color: white;
+}
+.arena-stage-content .button:hover {
+  background: var(--primary-hover);
+}
+
+.arena-feature-status {
+  display: table;
+  padding: 6px 12px;
+  margin-bottom: 20px;
+  border-radius: 24px;
+  color: var(--primary);
+  background: var(--primary-soft);
+  font-size: 12px;
+}
+
+.arena-feature-heading {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+.arena-date-badge {
+  flex: 0 0 56px;
+  display: grid;
+  text-align: center;
+  padding: 8px;
+  background: var(--canvas);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--primary);
+}
+.arena-date-badge strong {
+  font-size: 24px;
+  line-height: 1.2;
+}
+.arena-date-badge span {
+  font-size: 11px;
+}
+.arena-stage-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 20px 0;
+  color: var(--muted);
+  font-size: 13px;
+}
+.arena-stage-meta span {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+.arena-stage-meta svg {
+  flex-shrink: 0;
+}
+
+/* Uploaded cover with a category fallback. */
+.arena-poster {
+  height: 100%;
+  min-height: 330px;
+  background: var(--primary-soft);
+  overflow: hidden;
+}
+.arena-poster img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  aspect-ratio: 4 / 3;
+}
+.arena-poster-fallback {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 20px;
+  height: 100%;
+  padding: 36px;
+  background: var(--primary);
+  color: white;
+}
+.arena-poster-fallback > span {
+  font-size: 14px;
+  color: #dce9fa;
+}
+.arena-poster-fallback > strong {
+  font-size: clamp(23px, 2.5vw, 30px);
+  line-height: 1.35;
+  max-width: 22ch;
+}
+
+/* Personal links and join-by-code form. */
+.arena-shortcuts {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 32px;
+  margin-bottom: 24px;
+  align-items: center;
+}
+.arena-shortcuts h2 {
+  font-size: 20px;
+  margin: 0 0 8px;
+}
+.arena-shortcuts p {
+  color: var(--muted);
+  font-size: 13px;
+}
+.arena-shortcut-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.arena-shortcuts .join-code-card {
+  margin: 0;
+  padding: 20px;
+  box-shadow: none;
+}
+.arena-live-note {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  font-size: 12px;
+  color: var(--muted);
+  margin-bottom: 28px;
+}
+.arena-live-note a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: auto;
+  min-height: 44px;
+}
+
+/* Reusable event links and compact upcoming-event rows. */
+.arena-event {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+  min-height: 48px;
+  padding: 16px 0;
+  color: var(--text);
+}
+.arena-event:hover {
+  color: var(--primary);
+  text-decoration: none;
+}
+.arena-event:hover strong {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.arena-event:focus-visible {
+  outline: 3px solid var(--primary-mid);
+  outline-offset: 5px;
+  border-radius: 4px;
+}
+.arena-event-icon {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  height: 34px;
+  flex: 0 0 34px;
+  border-radius: 50%;
+  color: var(--primary-mid);
+  background: var(--primary-soft);
+}
+.arena-event-icon.is-live {
+  color: var(--red);
+  background: #fee2e2;
+}
+.arena-event-copy {
+  display: grid;
+  gap: 3px;
+  min-width: 0;
+  flex: 1;
+}
+.arena-event-copy strong {
+  font-size: 13px;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+.arena-event-copy small {
+  color: var(--muted);
+  font-size: 11px;
+}
+.arena-event > svg {
+  flex-shrink: 0;
+  color: var(--muted);
+}
+
+.arena-page .arena-rail {
+  padding: 24px;
+}
+.arena-rail .card-heading {
+  margin-bottom: 12px;
+}
+.arena-rail .arena-event + .arena-event {
+  border-top: 1px solid var(--border);
+}
+.arena-rail-action {
+  margin-top: 16px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+}
+.arena-rail-action p {
+  color: var(--muted);
+  font-size: 13px;
+  margin: 8px 0 16px;
+}
+
+.arena-next {
+  margin-bottom: 24px;
+}
+.arena-next .section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin: 0 0 20px;
+}
+.arena-next .section-heading h2 {
+  margin: 0;
+}
+.arena-next .section-heading > a {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 13px;
+  font-weight: 600;
+}
+.arena-upcoming-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr) auto;
+  gap: 24px;
+  align-items: center;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--border);
+}
+.arena-upcoming-card .arena-event {
+  padding: 0;
+}
+.arena-upcoming-card > p {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  color: var(--muted);
+  font-size: 12px;
+  margin: 0;
+}
+.arena-upcoming-card > p svg {
+  flex-shrink: 0;
+}
+.arena-upcoming-card > span {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--primary-mid);
+}
+.arena-empty {
+  padding: 24px 0;
+  color: var(--muted);
+  text-align: center;
+}
+.arena-empty p {
+  margin: 8px 0;
+  font-size: 13px;
+}
+.arena-empty a {
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* Secondary summary follows the main content in document order. */
+.arena-summary {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 24px;
+  margin: 32px 0 0;
+  padding: 20px 0;
+  border-block: 1px solid var(--border);
+}
+.arena-summary dt {
+  font-size: 12px;
+  color: var(--muted);
+}
+.arena-summary dd {
+  font-size: 26px;
+  line-height: 1.4;
+  font-weight: 700;
+  margin: 4px 0;
+  font-variant-numeric: tabular-nums;
+}
+.arena-summary small {
+  font-size: 11px;
+  color: var(--muted);
+}
+
+@media (max-width: 900px) {
+  .arena-page {
+    padding: 28px 24px 40px;
+  }
+  .arena-page .page-header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 16px;
+  }
+}
+
+@media (max-width: 700px) {
+  .arena-page .arena-stage-card,
+  .arena-shortcuts {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .arena-poster {
+    min-height: 230px;
+  }
+  .arena-poster-fallback {
+    padding: 28px;
+  }
+  .arena-poster-fallback > strong {
+    display: none;
+  }
+  .arena-stage-content {
+    padding: 24px;
+  }
+  .arena-upcoming-card {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+  }
+  .arena-shortcuts .inline-form {
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 600px) {
+  .arena-page {
+    padding: 24px 16px 40px;
+  }
+  .arena-summary {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .arena-page *,
+  .arena-page *::before,
+  .arena-page *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}

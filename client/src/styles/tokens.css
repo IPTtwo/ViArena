@@ -1,20 +1,20 @@
 /* Single source of design values for ViArena. */
 
 :root {
-  --primary: #00296B;
-  --primary-hover: #001B47;
-  --primary-mid: #164A91;
-  --primary-soft: #DCE9FA;
-  --canvas: #F8FAFD;
-  --surface: #FFFFFF;
-  --text: #14233B;
-  --muted: #52647B;
-  --border: #DCE4EF;
-  --green: #15803D;
-  --amber: #B45309;
-  --red: #B91C1C;
-  --info: #0369A1;
-  --neutral: #64748B;
+  --primary: #00296b;
+  --primary-hover: #001b47;
+  --primary-mid: #164a91;
+  --primary-soft: #dce9fa;
+  --canvas: #f8fafd;
+  --surface: #ffffff;
+  --text: #14233b;
+  --muted: #52647b;
+  --border: #dce4ef;
+  --green: #15803d;
+  --amber: #b45309;
+  --red: #b91c1c;
+  --info: #0369a1;
+  --neutral: #64748b;
   --space-1: 4px;
   --space-2: 8px;
   --space-3: 12px;
@@ -25,5 +25,5 @@
   --space-10: 40px;
   --space-12: 48px;
   --space-16: 64px;
-  font-family: Poppins,system-ui,sans-serif;
+  font-family: Poppins, system-ui, sans-serif;
 }

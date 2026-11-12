@@ -1,5 +1,4 @@
-import React, { useId, useState, useEffect, useRef } from 'react';
-import { CalendarDays, ChevronRight, ClipboardList, Compass, FileText, Home, LogOut, Menu, Radio, Shield, User, Users, X, CheckCircle2, AlertCircle, Plus, Settings, Lock, Search, LoaderCircle } from 'lucide-react';
+import React from 'react';
 export function Badge({ children, tone = 'neutral' }) {
-  return <span className={`badge badge-${tone}`}>{children}</span>
+  return <span className={`badge badge-${tone}`}>{children}</span>;
 }

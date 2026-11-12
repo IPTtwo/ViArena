@@ -1,13 +1,13 @@
 /* Feature layout uses the product's 4 px spacing scale. */
 
 :root {
-  --primary: #00296B;
-  --primary-hover: #001B47;
-  --primary-soft: #DCE9FA;
-  --canvas: #F8FAFD;
-  --text: #14233B;
-  --muted: #52647B;
-  --border: #DCE4EF;
+  --primary: #00296b;
+  --primary-hover: #001b47;
+  --primary-soft: #dce9fa;
+  --canvas: #f8fafd;
+  --text: #14233b;
+  --muted: #52647b;
+  --border: #dce4ef;
 }
 
 .app-shell .sidebar {
@@ -15,7 +15,7 @@
   flex-basis: 240px;
 }
 
-.sidebar-links>div {
+.sidebar-links > div {
   margin-bottom: 16px;
 }
 
@@ -28,24 +28,32 @@
   min-height: 44px;
 }
 
-.card,.button,input,select,textarea {
+.card,
+.button,
+input,
+select,
+textarea {
   box-sizing: border-box;
 }
 
-button:focus-visible,a:focus-visible,select:focus-visible,input:focus-visible,textarea:focus-visible {
-  outline: 3px solid #164A91;
+button:focus-visible,
+a:focus-visible,
+select:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid #164a91;
   outline-offset: 2px;
 }
 
 .two-column {
   display: grid;
-  grid-template-columns: minmax(0,1.5fr) minmax(300px,1fr);
+  grid-template-columns: minmax(0, 1.5fr) minmax(300px, 1fr);
   gap: 24px;
   align-items: start;
   margin-bottom: 24px;
 }
 
-.two-column>.card {
+.two-column > .card {
   min-width: 0;
 }
 
@@ -115,7 +123,7 @@ button:focus-visible,a:focus-visible,select:focus-visible,input:focus-visible,te
 
 .managed-event-row .badge-success {
   background: var(--accent-soft);
-  color: #8A450E;
+  color: #8a450e;
 }
 
 .managed-event-actions .feature-links .button {
@@ -138,7 +146,7 @@ button:focus-visible,a:focus-visible,select:focus-visible,input:focus-visible,te
   margin: 0;
 }
 
-.inline-form>select {
+.inline-form > select {
   min-width: 180px;
   max-width: 300px;
 }
@@ -186,7 +194,7 @@ button:focus-visible,a:focus-visible,select:focus-visible,input:focus-visible,te
 
 .calendar-month {
   display: grid;
-  grid-template-columns: repeat(7,minmax(0,1fr));
+  grid-template-columns: repeat(7, minmax(0, 1fr));
   gap: 1px;
   background: var(--border);
   border: 1px solid var(--border);
@@ -214,11 +222,11 @@ button:focus-visible,a:focus-visible,select:focus-visible,input:focus-visible,te
 }
 
 .calendar-day.outside {
-  background: #F4F7FB;
+  background: #f4f7fb;
   color: var(--muted);
 }
 
-.calendar-day>strong {
+.calendar-day > strong {
   font-size: 13px;
 }
 
@@ -226,8 +234,8 @@ button:focus-visible,a:focus-visible,select:focus-visible,input:focus-visible,te
   display: block;
   padding: 4px 8px;
   border-radius: 4px;
-  background: #DCE9FA;
-  color: #00296B;
+  background: #dce9fa;
+  color: #00296b;
   font-size: 11px;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -235,13 +243,13 @@ button:focus-visible,a:focus-visible,select:focus-visible,input:focus-visible,te
 }
 
 .calendar-pill.task {
-  background: #FFF1D6;
-  color: #8A4B00;
+  background: #fff1d6;
+  color: #8a4b00;
 }
 
 .calendar-pill.session {
-  background: #DBF2FB;
-  color: #0369A1;
+  background: #dbf2fb;
+  color: #0369a1;
 }
 
 .calendar-list .simple-row {
@@ -252,7 +260,7 @@ button:focus-visible,a:focus-visible,select:focus-visible,input:focus-visible,te
   position: relative;
   width: 100%;
   aspect-ratio: 16/9;
-  background: #0E1930;
+  background: #0e1930;
   border-radius: 12px;
   overflow: hidden;
   margin: 16px 0;
@@ -266,7 +274,7 @@ button:focus-visible,a:focus-visible,select:focus-visible,input:focus-visible,te
 
 .stream-empty {
   min-height: 280px;
-  background: #F2F6FC;
+  background: #f2f6fc;
   border: 1px dashed var(--border);
   border-radius: 12px;
   display: flex;
@@ -291,7 +299,7 @@ button:focus-visible,a:focus-visible,select:focus-visible,input:focus-visible,te
   white-space: normal;
 }
 
-@media (max-width:900px) {
+@media (max-width: 900px) {
   .two-column {
     grid-template-columns: 1fr;
   }
@@ -301,7 +309,7 @@ button:focus-visible,a:focus-visible,select:focus-visible,input:focus-visible,te
   }
 }
 
-@media (max-width:700px) {
+@media (max-width: 700px) {
   .managed-events-heading {
     align-items: stretch;
     flex-direction: column;
@@ -326,7 +334,8 @@ button:focus-visible,a:focus-visible,select:focus-visible,input:focus-visible,te
   .calendar-toolbar {
     gap: 12px;
   }
-  .inline-form,.calendar-toolbar .actions {
+  .inline-form,
+  .calendar-toolbar .actions {
     width: 100%;
   }
   .inline-form .field {

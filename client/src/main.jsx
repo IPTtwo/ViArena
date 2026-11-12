@@ -7,4 +7,9 @@ import './styles/layout.css';
 import './styles/participant.css';
 import './styles/organizer.css';
 import './styles/admin.css';
-createRoot(document.getElementById('root')).render(<React.StrictMode><App /></React.StrictMode>);
+import './styles/arena.css';
+createRoot(document.getElementById('root')).render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+);

@@ -5,3 +5,11 @@ dist/
 !.env.example
 .DS_Store
 *.log
+
+# Personal editor/agent configuration (may contain absolute local paths).
+.codex/
+.vscode/
+
+# Browser-test artifacts.
+playwright-report/
+test-results/

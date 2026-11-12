@@ -1,11 +1,32 @@
 import React, { useState } from 'react';
 import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
-import { CalendarDays, ChevronRight, ClipboardList, Compass, FileText, Home, LogOut, Menu, Radio, Shield, User, Users, X, Plus, CheckCircle2, BookOpen, Award, Activity, CalendarClock } from 'lucide-react';
+import {
+  CalendarDays,
+  ChevronRight,
+  ClipboardList,
+  Compass,
+  Home,
+  LogOut,
+  Menu,
+  Radio,
+  Shield,
+  User,
+  Users,
+  X,
+  Plus,
+  CheckCircle2,
+  BookOpen,
+  Award,
+  Activity,
+  CalendarClock,
+  CircleDot,
+} from 'lucide-react';
 import { useStore } from '../../state/StoreProvider';
 import logo from '../../assets/logo.svg';
 import { canCreateEvent, canManageEvent } from '../../functions/domain';
 
 const coreLinks = [
+  { to: '/arena', label: 'Arena Overview', icon: CircleDot },
   { to: '/events', label: 'Explore Events', icon: Compass },
   { to: '/my-events', label: 'My Events', icon: CalendarDays },
   { to: '/my-teams', label: 'My Teams', icon: Users, assignedOnly: true },
@@ -34,84 +55,170 @@ export function Shell({ children }) {
   const [open, setOpen] = useState(false);
   const admin = user?.roles?.includes('Admin');
   const organizer = canCreateEvent(user);
-  const manageable = events.some(e => canManageEvent(e, user) || e.coOrganizers?.some(c => c.userId === user?.id));
-  const teamAssigned = teams.some(t => t.memberIds.includes(user?.id) || t.managerId === user?.id || t.handlerIds.includes(user?.id));
-  const core = coreLinks.filter(l => !l.assignedOnly || teamAssigned || organizer || admin);
-  const mobileLinks = core.filter(({ to }) => ['/events', '/my-events', '/calendar', '/profile'].includes(to));
+  const manageable = events.some(
+    (e) => canManageEvent(e, user) || e.coOrganizers?.some((c) => c.userId === user?.id),
+  );
+  const teamAssigned = teams.some(
+    (t) =>
+      t.memberIds.includes(user?.id) || t.managerId === user?.id || t.handlerIds.includes(user?.id),
+  );
+  const core = coreLinks.filter((l) => !l.assignedOnly || teamAssigned || organizer || admin);
+  const mobileLinks = core.filter(({ to }) =>
+    ['/arena', '/events', '/my-events', '/profile'].includes(to),
+  );
   const sections = [{ label: 'YOUR ARENA', links: core }];
-  if (organizer || manageable) sections.push({ label: 'ORGANIZER TOOLS', links: organizerLinks.filter(l => !l.organizerOnly || organizer) });
+  if (organizer || manageable)
+    sections.push({
+      label: 'ORGANIZER TOOLS',
+      links: organizerLinks.filter((l) => !l.organizerOnly || organizer),
+    });
   if (admin) sections.push({ label: 'ADMINISTRATION', links: adminLinks });
-  const initials = user?.name?.split(' ').slice(0, 2).map(s => s[0]).join('').toUpperCase();
-  const area = pathname.startsWith('/admin') ? 'Admin Console' : pathname.startsWith('/organizer') ? 'Organizer Workspace' : 'ViArena';
-  return <div className="app-shell">
-    <aside className={`sidebar ${open ? 'sidebar-open' : ''}`}>
-      <div className="sidebar-brand">
-        <Link to="/profile" aria-label="Open my profile" onClick={() => setOpen(false)}><img src={logo} alt="" /><strong>ViArena</strong></Link>
-        <button className="icon-button sidebar-close" aria-label="Close menu" onClick={() => setOpen(false)}><X /></button>
-      </div>
-      <div className="school">
-        <small>SCHOOL WORKSPACE</small>
-        <strong>Ateneo de Naga University</strong>
-        <span>Naga City, Philippines</span>
-      </div>
-      <nav aria-label="Main navigation" className="sidebar-links">{sections.map(section => <div key={section.label}>
-        <div className="nav-section-title">{section.label}
-        </div>{section.links.map(({ to, label, icon: Icon }) => <NavLink key={to}
-          to={to}
-          onClick={() => setOpen(false)}
-          className={({ isActive }) => `sidebar-link ${isActive ? 'active' : ''}`}
-          end={to === '/organizer' || to === '/admin' || to === '/events'}><Icon size={18} />{label}</NavLink>)}
-      </div>)}
-      </nav>
-      <div className="sidebar-footer">
-        <p className="motto">We are ONE.</p>
-        <p>Your events, people, and next big moments.</p>
-        <div className="sidebar-user">
-          <Link to="/profile" className="avatar" aria-label="My profile">{initials}</Link>
-          <div>
-            <strong>{user?.name}</strong>
-            <small>{admin ? 'Admin' : organizer ? 'Organizer' : 'Participant'}</small>
+  const initials = user?.name
+    ?.split(' ')
+    .slice(0, 2)
+    .map((s) => s[0])
+    .join('')
+    .toUpperCase();
+  const area = pathname.startsWith('/admin')
+    ? 'Admin Console'
+    : pathname.startsWith('/organizer')
+      ? 'Organizer Workspace'
+      : 'ViArena';
+  return (
+    <div className="app-shell">
+      <aside className={`sidebar ${open ? 'sidebar-open' : ''}`}>
+        <div className="sidebar-brand">
+          <Link to="/arena" aria-label="ViArena home" onClick={() => setOpen(false)}>
+            <img src={logo} alt="" />
+            <strong>ViArena</strong>
+          </Link>
+          <button
+            className="icon-button sidebar-close"
+            aria-label="Close menu"
+            onClick={() => setOpen(false)}
+          >
+            <X />
+          </button>
+        </div>
+        <div className="school">
+          <small>SCHOOL WORKSPACE</small>
+          <strong>Ateneo de Naga University</strong>
+          <span>Naga City, Philippines</span>
+        </div>
+        <nav aria-label="Main navigation" className="sidebar-links">
+          {sections.map((section) => (
+            <div key={section.label}>
+              <div className="nav-section-title">{section.label}</div>
+              {section.links.map(({ to, label, icon: Icon }) => (
+                <NavLink
+                  key={to}
+                  to={to}
+                  onClick={() => setOpen(false)}
+                  className={({ isActive }) => `sidebar-link ${isActive ? 'active' : ''}`}
+                  end={to === '/organizer' || to === '/admin' || to === '/events'}
+                >
+                  <Icon size={18} />
+                  {label}
+                </NavLink>
+              ))}
+            </div>
+          ))}
+        </nav>
+        <div className="sidebar-footer">
+          <p className="motto">We are ONE.</p>
+          <p>Your events, people, and next big moments.</p>
+          <div className="sidebar-user">
+            <Link to="/profile" className="avatar" aria-label="My profile">
+              {initials}
+            </Link>
+            <div>
+              <strong>{user?.name}</strong>
+              <small>{admin ? 'Admin' : organizer ? 'Organizer' : 'Participant'}</small>
+            </div>
+            <button
+              className="icon-button"
+              aria-label="Sign out"
+              onClick={() => {
+                logout();
+                navigate('/login');
+              }}
+            >
+              <LogOut size={18} />
+            </button>
           </div>
-          <button className="icon-button" aria-label="Sign out" onClick={() => {
-            logout();
-            navigate('/login')
-          }}><LogOut size={18} /></button>
         </div>
+      </aside>
+      {open && (
+        <button
+          className="drawer-shade"
+          aria-label="Close navigation"
+          onClick={() => setOpen(false)}
+        />
+      )}
+      <div className="app-content">
+        <header className="topbar">
+          <button
+            className="icon-button menu-toggle"
+            aria-label="Open navigation"
+            onClick={() => setOpen(true)}
+          >
+            <Menu />
+          </button>
+          <div className="topbar-title">
+            <span>{area}</span>
+            <ChevronRight size={15} />
+            <strong>
+              {pathname.split('/').filter(Boolean).slice(-1)[0]?.replaceAll('-', ' ') ||
+                'Explore Events'}
+            </strong>
+          </div>
+          <div className="topbar-right">
+            <span className="timezone">Philippine Standard Time, UTC+8</span>
+            <Link to="/profile" className="avatar" aria-label="My profile">
+              {initials}
+            </Link>
+          </div>
+        </header>
+        <main className="content">{children}</main>
+        <footer className="footer">
+          ViArena / Ateneo de Naga University
+          <span>Built for the moments we share.</span>
+        </footer>
       </div>
-    </aside>{open && <button className="drawer-shade" aria-label="Close navigation" onClick={() => setOpen(false)} />}
-    <div className="app-content">
-      <header className="topbar">
-        <button className="icon-button menu-toggle" aria-label="Open navigation" onClick={() => setOpen(true)}><Menu /></button>
-        <div className="topbar-title">
-          <span>{area}</span>
-          <ChevronRight size={15} />
-          <strong>{pathname.split('/').filter(Boolean).slice(-1)[0]?.replaceAll('-', ' ') || 'Explore Events'}</strong>
+      {!open && (
+        <nav className="mobile-nav" aria-label="Mobile navigation">
+          {mobileLinks.map(({ to, label, icon: Icon }) => (
+            <NavLink
+              key={to}
+              to={to}
+              end={to === '/events'}
+              className={({ isActive }) => `mobile-nav-link ${isActive ? 'active' : ''}`}
+            >
+              <Icon size={19} />
+              <span>
+                {to === '/arena'
+                  ? 'Arena'
+                  : label === 'Explore Events'
+                    ? 'Explore'
+                    : label.replace('My ', '')}
+              </span>
+            </NavLink>
+          ))}
+        </nav>
+      )}
+      {flash && (
+        <div role="status" className={`toast ${flash.type === 'error' ? 'toast-error' : ''}`}>
+          <CheckCircle2 size={18} />
+          {flash.message}
+          <button
+            className="icon-button"
+            aria-label="Dismiss notification"
+            onClick={() => setFlash(null)}
+          >
+            <X size={16} />
+          </button>
         </div>
-        <div className="topbar-right">
-          <span className="timezone">Philippine Standard Time, UTC+8</span>
-          <Link to="/profile" className="avatar" aria-label="My profile">{initials}</Link>
-        </div>
-      </header>
-      <main className="content">{children}
-      </main>
-      <footer className="footer">ViArena / Ateneo de Naga University
-        <span>Built for the moments we share.</span>
-      </footer>
+      )}
     </div>
-    {!open && <nav className="mobile-nav" aria-label="Mobile navigation">
-      {mobileLinks.map(({ to, label, icon: Icon }) => <NavLink
-        key={to}
-        to={to}
-        end={to === '/events'}
-        className={({ isActive }) => `mobile-nav-link ${isActive ? 'active' : ''}`}
-      >
-        <Icon size={19} />
-        <span>{label === 'Explore Events' ? 'Explore' : label.replace('My ', '')}</span>
-      </NavLink>)}
-    </nav>}
-    {flash && <div role="status" className={`toast ${flash.type === 'error' ? 'toast-error' : ''}`}>
-      <CheckCircle2 size={18} />{flash.message}
-      <button className="icon-button" aria-label="Dismiss notification" onClick={() => setFlash(null)}><X size={16} /></button>
-    </div>}
-  </div>;
+  );
 }

@@ -11,7 +11,7 @@ export function AdminDashboard() {
 
   const organizerCount = users.filter((user) => user.roles.includes('Organizer')).length;
   const activeEventCount = events.filter(
-    (event) => event.visibility === 'Published' && new Date(event.end) > now()
+    (event) => event.visibility === 'Published' && new Date(event.end) > now(),
   ).length;
 
   const roleDistribution = [
@@ -99,7 +99,9 @@ export function AdminDashboard() {
 
           <Card>
             <h2>Event oversight</h2>
-            <p className="subtext">Inspect campus events and manage authorized organizer accounts.</p>
+            <p className="subtext">
+              Inspect campus events and manage authorized organizer accounts.
+            </p>
             <Link className="button primary" to="/admin/events">
               View events
             </Link>

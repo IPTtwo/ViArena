@@ -5,7 +5,7 @@ import { Search } from 'lucide-react';
 import { useStore } from '../../../state/StoreProvider';
 import { filterMembers } from '../../../functions/domain';
 import { Button, Card, Confirm, Empty, PageHeader } from '../../../components';
-import { useRoleActions } from '../functions/useRoleActions';
+import { useRoleActions } from '../hooks/useRoleActions';
 import { RoleBadge } from './RoleBadge';
 
 export function AdminUsers() {

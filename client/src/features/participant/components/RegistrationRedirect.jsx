@@ -27,7 +27,7 @@ export function RegistrationRedirect() {
       navigate(`/events/${event.id}`, { replace: true })
     }
   };
-  return <Shell>
+  return <>
     <PageHeader eyebrow="EVENT REGISTRATION" title="Confirm registration" description="Review your registration before securing your place." />
     <div className="registration-panel">
       <Card>
@@ -58,5 +58,5 @@ export function RegistrationRedirect() {
         </div>
       </Card>
     </div>
-  </Shell>
+  </>
 }

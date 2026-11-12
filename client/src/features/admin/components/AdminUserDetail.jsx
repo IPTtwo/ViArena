@@ -4,7 +4,7 @@ import { ArrowLeft, ShieldCheck } from 'lucide-react';
 
 import { useStore } from '../../../state/StoreProvider';
 import { Badge, Button, Card, Confirm, Empty, PageHeader, dateTimeText } from '../../../components';
-import { useRoleActions } from '../functions/useRoleActions';
+import { useRoleActions } from '../hooks/useRoleActions';
 import { RoleBadge } from './RoleBadge';
 
 export function AdminUserDetail() {

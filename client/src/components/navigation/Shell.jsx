@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { CalendarDays, ChevronRight, ClipboardList, Compass, FileText, Home, LogOut, Menu, Radio, Shield, User, Users, X, Plus, CheckCircle2, BookOpen, Award, Activity, CalendarClock } from 'lucide-react';
-import { useStore } from '../../../state/StoreProvider';
-import logo from '../../logo.svg';
-import { canCreateEvent, canManageEvent } from '../../../functions/domain';
+import { useStore } from '../../state/StoreProvider';
+import logo from '../../assets/logo.svg';
+import { canCreateEvent, canManageEvent } from '../../functions/domain';
 
 const coreLinks = [
   { to: '/events', label: 'Explore Events', icon: Compass },
@@ -37,6 +37,7 @@ export function Shell({ children }) {
   const manageable = events.some(e => canManageEvent(e, user) || e.coOrganizers?.some(c => c.userId === user?.id));
   const teamAssigned = teams.some(t => t.memberIds.includes(user?.id) || t.managerId === user?.id || t.handlerIds.includes(user?.id));
   const core = coreLinks.filter(l => !l.assignedOnly || teamAssigned || organizer || admin);
+  const mobileLinks = core.filter(({ to }) => ['/events', '/my-events', '/calendar', '/profile'].includes(to));
   const sections = [{ label: 'YOUR ARENA', links: core }];
   if (organizer || manageable) sections.push({ label: 'ORGANIZER TOOLS', links: organizerLinks.filter(l => !l.organizerOnly || organizer) });
   if (admin) sections.push({ label: 'ADMINISTRATION', links: adminLinks });
@@ -97,6 +98,17 @@ export function Shell({ children }) {
         <span>Built for the moments we share.</span>
       </footer>
     </div>
+    {!open && <nav className="mobile-nav" aria-label="Mobile navigation">
+      {mobileLinks.map(({ to, label, icon: Icon }) => <NavLink
+        key={to}
+        to={to}
+        end={to === '/events'}
+        className={({ isActive }) => `mobile-nav-link ${isActive ? 'active' : ''}`}
+      >
+        <Icon size={19} />
+        <span>{label === 'Explore Events' ? 'Explore' : label.replace('My ', '')}</span>
+      </NavLink>)}
+    </nav>}
     {flash && <div role="status" className={`toast ${flash.type === 'error' ? 'toast-error' : ''}`}>
       <CheckCircle2 size={18} />{flash.message}
       <button className="icon-button" aria-label="Dismiss notification" onClick={() => setFlash(null)}><X size={16} /></button>

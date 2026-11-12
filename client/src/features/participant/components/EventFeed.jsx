@@ -17,7 +17,7 @@ export function EventFeed() {
   const published = events.filter(e => e.visibility === 'Published');
   const { count } = useStore();
   const filtered = published.filter(e => [e.title, e.description, e.venue].join(' ').toLowerCase().includes(search.trim().toLowerCase()) && (category === 'All categories' || e.category === category) && (status === 'All statuses' || (status === 'Open' && eventStatus(e, count(e.id)).text === 'Registration Open') || (status === 'Closed' && eventStatus(e, count(e.id)).text !== 'Registration Open')));
-  return <BrowsingShell>
+  return <>
     <div className="public-content">
       <PageHeader eyebrow="EVENTS SPOTLIGHT"
         title="Explore events"
@@ -56,5 +56,5 @@ export function EventFeed() {
         </div>}
       </> : <Empty title="No matching events" description="Try a different search or category." />}
     </div>
-  </BrowsingShell>
+  </>
 }
